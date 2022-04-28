@@ -80,10 +80,38 @@ after the "lock" has been **disabled**, we can play Growtopia on multiple window
 ![patch_example](turtorials/sucsess.png)
 ![patch_example](turtorials/succsess2.png)
 
+
+
+
+
+# Editing The article
+this article is written in markdown, and to view the markdown some packages need to be installed
+## setup
+[python][python_link] and [pip][pip_link] needs to be installed on your system
+### ubuntu
+```
+# install python  
+sudo apt install python3 
+# install pip 
+apt-get install python3-pip
+# install pip package to render markdown
+pip install grip
+```
+
+## rendering the article
+run `render.sh` to render the article (only needed once)
+
+
+
+
+
+
+
+
 [//]: # (Common Links used by this article)
 [ghidra_link]: https://github.com/NationalSecurityAgency/ghidra
 [CreateMutexA_link]: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa
 [OpenMutexW_link]: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-openmutexw
-
-
+[pip_link]: https://pypi.org/project/pip/
+[python_link]: https://www.python.org/
 
