@@ -1,5 +1,6 @@
 # Turtorial
 In this tutorial I will show you how to reverse engineer a game(growtopia)
+If you got 
 
 # Why?
 In the game you can't open a multiple instances of the game, so that you can't play with multiple
@@ -11,9 +12,7 @@ To understand/follow along this article things listed here is required
 - basic knowledge of x86 assembly 
 - some knowledge about how if else statements work at the low level
 - experience in [C programming language](https://en.wikipedia.org/wiki/C_(programming_language))
-- [ghidra](https://github.com/NationalSecurityAgency/ghidra) software
-- Windows OS
-
+- [ghidra](https://github.com/NationalSecurityAgency/ghidra) software - Windows OS
 
 
 
@@ -21,9 +20,9 @@ To understand/follow along this article things listed here is required
 
 ## Turtorials Table Of contents
 - [Overview](#1overview)
-
 - [game and ghidra installation](#2game-and-ghidra-installation)
 - [importing the game to ghidra](#3-importing-the-game-to-ghidra)
+- [information gathering](#4-information-gathering)
 
 
 ```
@@ -137,6 +136,38 @@ and my Project name as ***BreakTheLock***
 	  (we need to find information about the specific compiler or what language the game is originally written in so that we can improve our reverse engineering effort)
 
 
+## 4. Information gathering
+Before we start ***reverse engineering*** the game, lets try to find the publicly available information about the game
+like the source code's language the game written in, the library it uses and ect.
+
+### finding the programming language the game is written in
+Lets first try to find the github of the developers to guess the source code's language
+to do that, we can head to the [wiki website of growtopia][growtopia_wikipedia_link]
+
+>  Developed by Robinson Technologies and Hamumu Software until 2017.
+>  Published by Robinson Technologies until 2017.
+
+
+Looking at the page we can see that it is developed mainly by Robinson Technologies and Hamumu Software 
+
+So lets try to find their github pages by searching for
+```
+robinson technologies github
+```
+![enumeration_image](enumeration/Screenshot_1.png)
+
+when clicking the first result image we have found the [developer's github][rtsoft_github_link]
+![enumeration_image](enumeration/Screenshot_2.png)
+
+we can see from his github profile that he seems to like c++/c alot because he is using
+it alot in his repositories
+
+Now lets look at the first repositories that is shown which is [proton][proton_link]
+
+![enumeration_image](enumeration/Screenshot_3.png)
+
+We can see that growtopia is using the ***Proton SDK***, now we can conclude that it is likely
+that growtopia on windows is written using ***c/c++*** and is using [winapi][win_api_wikipedia_link] to check for multiple instances
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
 
@@ -174,3 +205,8 @@ run `render.sh` to render the article (only needed once)
 [growtopia_link]: https://www.growtopiagame.com/
 [tutorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
 [visual_studio_link]: https://visualstudio.microsoft.com/
+[article_comments_section_link]: https://github.com/ShiromiTempest/growtopia_cracked/issues/1
+[growtopia_wikipedia_link]: https://en.wikipedia.org/wiki/Growtopia
+[rtsoft_github_link]: https://github.com/SethRobinson
+[proton_link]: https://github.com/SethRobinson/proton
+[win_api_wikipedia_link]: https://en.wikipedia.org/wiki/Windows_API
