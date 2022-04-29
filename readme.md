@@ -92,7 +92,11 @@ head over to [ghidra][ghidra_installation_link] and look at the [installation gu
 
 which can be installed [here][turtorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
+### 3. Importing the game to ghidra
+To prepare for analysing the binary, we need to import it to ghidra
 
+1.open ***ghidra*** then go to ***file->New Project ...*** 
+![tutorials_img](turtorials/2.png)
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
