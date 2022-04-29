@@ -2,10 +2,8 @@
 In this turtorial I will show you how to reverse engineer a game(growtopia)
 
 # Why?
-In the game you can't open a multiple instances of the game, which is really annoying
-when you want to play with multiple account on the same device(who wants to buy a new device
-just to play on multiple account? lol)
-
+In the game you can't open a multiple instances of the game, so that you can't play with multiple
+accounts on the same device, so lets try to ***reverse engineer*** the game to achieve this functionality
 ![problem_image](detector.png)
 
 # Requirements
