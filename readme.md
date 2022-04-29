@@ -92,11 +92,50 @@ head over to [ghidra][ghidra_installation_link] and look at the [installation gu
 
 which can be installed [here][tutorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
-### 3. Importing the game to ghidra
+## 3. Importing the game to ghidra
 To prepare for analysing the binary, we need to import it to ghidra
 
-1.open ***ghidra*** then go to ***file->New Project ...*** 
+1. open ***ghidra*** then go to ***file->New Project ...*** 
 ![tutorials_img](tutorials/2.png)
+2. select ***Non-Shared Project*** then click next
+![tutorials_img](tutorials/3.png)
+3. now you need to specify the ***Project Directory*** and ***Project Name***
+I will set my ***Project Directory*** as `C:\Users\Nicho\Desktop\cracking_blog\projects`
+and my Project name as ***BreakTheLock***
+![tutorials_img](tutorials/5.png)
+4. After we have created the ghidra project we need to find the main ***executable*** of growtopia
+- we can do that by first typing ***growtopia*** in the windows search bar
+
+![tutorials_img](tutorials/6_find_gt.png)
+
+- we are brought to this folder, but it is only the location of the ***shortcut***
+  so we need to right click at the shortcut once more and select ***open file location***
+
+![tutorials_img](tutorials/8.png)
+
+- we have sucessfully found the location of the main ***executable*** of growtopia
+
+![tutorials_img](tutorials/9.png)
+
+- import to ghidra by dragging the ***Growtopia.exe*** to the ghidra's project menu
+![tutorials_img](tutorials/10.png)
+
+- we are prompted this menu, we can just leave everything as default
+![tutorials_img](tutorials/11.png)
+
+	- we can also see the architecture of the executable by clicking the ***...*** besides ***Language*** menu
+![tutorials_img](tutorials/12.png)
+		- from the image above, we know that the game is compiled using [Visual Studio][visual_studio_link]  targeting the ***x86 architecture***
+
+- after clicking ***ok*** we can begin importing the game to ghidra and wait until it finishes
+![tutorials_img](tutorials/13.png)
+
+- when the import is finished, we can see the ***summary/analysis*** of the binary
+![tutorials_img](tutorials/14.png)
+	- from the image above, we can see that ghidra seems to not know the specific visual studio's compiler
+	  `Compiler: 			visualstudio:unknown`
+	  (we need to find information about the specific compiler or what language the game is originally written in so that we can improve our reverse engineering effort)
+
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
@@ -134,3 +173,4 @@ run `render.sh` to render the article (only needed once)
 
 [growtopia_link]: https://www.growtopiagame.com/
 [tutorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
+[visual_studio_link]: https://visualstudio.microsoft.com/
