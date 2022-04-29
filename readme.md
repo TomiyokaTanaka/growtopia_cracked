@@ -23,6 +23,7 @@ To understand/follow along this article things listed here is required
 - [Overview](#1overview)
 
 - [game and ghidra installation](#2game-and-ghidra-installation)
+- [importing the game to ghidra](#3-importing-the-game-to-ghidra)
 
 
 ```
@@ -93,7 +94,6 @@ head over to [ghidra][ghidra_installation_link] and look at the [installation gu
 which can be installed [here][tutorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
 ## 3. Importing the game to ghidra
-To prepare for analysing the binary, we need to import it to ghidra
 
 1. open ***ghidra*** then go to ***file->New Project ...*** 
 ![tutorials_img](tutorials/2.png)
