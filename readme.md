@@ -1,5 +1,5 @@
 # Turtorial
-In this turtorial I will show you how to reverse engineer a game(growtopia)
+In this tutorial I will show you how to reverse engineer a game(growtopia)
 
 # Why?
 In the game you can't open a multiple instances of the game, so that you can't play with multiple
@@ -35,7 +35,7 @@ CreateMutexW == CreateMutexA
 ```
 ## 1.Overview
 
-In this turtorial we will try to break the validator as shown in [Why? Section](#why) using [reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering) techniques
+In this tutorial we will try to break the validator as shown in [Why? Section](#why) using [reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering) techniques
 with the [ghidra framework][ghidra_link]
 
 
@@ -67,36 +67,36 @@ program_handle = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,"Growtopia");
 So that It will initialize the game regardless if a mutex for "Growtopia" has been created or not
 
 ### Example Of Patching Binary Via Modifying The Assembly 
-![patch_example](turtorials/39.png)
+![patch_example](tutorials/39.png)
 
 
-![patch_example](turtorials/40.png)
+![patch_example](tutorials/40.png)
 
 
-![patch_example](turtorials/41.png)
+![patch_example](tutorials/41.png)
 
 
 after the "lock" has been **disabled**, we can play Growtopia on multiple windows with multiple accounts simultaneously
 
 
-![patch_example](turtorials/sucsess.png)
-![patch_example](turtorials/succsess2.png)
+![patch_example](tutorials/sucsess.png)
+![patch_example](tutorials/succsess2.png)
 
 ## 2.Game And Ghidra Installation
-Before starting this turtorial, we need to install both of the game and ghidra
+Before starting this tutorial, we need to install both of the game and ghidra
 
 ### ghidra installation
 head over to [ghidra][ghidra_installation_link] and look at the [installation guide](https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/stable/GhidraDocs/InstallationGuide.html)
 
 ### growtopia installation
 
-which can be installed [here][turtorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
+which can be installed [here][tutorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
 ### 3. Importing the game to ghidra
 To prepare for analysing the binary, we need to import it to ghidra
 
 1.open ***ghidra*** then go to ***file->New Project ...*** 
-![tutorials_img](turtorials/2.png)
+![tutorials_img](tutorials/2.png)
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
@@ -130,7 +130,7 @@ run `render.sh` to render the article (only needed once)
 [OpenMutexW_link]: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-openmutexw
 [pip_link]: https://pypi.org/project/pip/
 [python_link]: https://www.python.org/
-[turtorial_installer_link]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
+[tutorial_installer_link]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
 
 [growtopia_link]: https://www.growtopiagame.com/
-[turtorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
+[tutorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
