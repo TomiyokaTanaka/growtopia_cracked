@@ -9,21 +9,23 @@ just to play on multiple account? lol)
 ![problem_image](detector.png)
 
 # Requirements
-To understand/follow along this article a knowledge of things listed here is required
+To understand/follow along this article things listed here is required
 - basic knowledge of x86 assembly 
 - some knowledge about how if else statements work at the low level
-- [C programming language](https://en.wikipedia.org/wiki/C_(programming_language))
-- [ghidra](https://github.com/NationalSecurityAgency/ghidra)
+- experience in [C programming language](https://en.wikipedia.org/wiki/C_(programming_language))
+- [ghidra](https://github.com/NationalSecurityAgency/ghidra) software
 - Windows OS
 
-# Table Of contents
-- [Overview](#overview)
-
-- Installation of the game and ghidra
 
 
 
 # Turtorials
+
+## Turtorials Table Of contents
+- [Overview](#1overview)
+
+- [game and ghidra installation](#2game-and-ghidra-installation)
+
 
 ```
 Notes : 
@@ -33,9 +35,9 @@ I mention this because the microsoft docs and the output from the ghidra decompi
 OpenMutexW == OpenMutexA
 CreateMutexW == CreateMutexA
 ```
-## Overview
+## 1.Overview
 
-In this turtorial we will try to break the validator as shown in [Why? Section](#why) using [reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering)
+In this turtorial we will try to break the validator as shown in [Why? Section](#why) using [reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering) techniques
 with the [ghidra framework][ghidra_link]
 
 
@@ -64,7 +66,9 @@ with ghidra's disassembler to jump straight to
 ```
 program_handle = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,"Growtopia");
 ```
-example of patching binary via modifying the assembly 
+So that It will initialize the game regardless if a mutex for "Growtopia" has been created or not
+
+### Example Of Patching Binary Via Modifying The Assembly 
 ![patch_example](turtorials/39.png)
 
 
@@ -80,13 +84,22 @@ after the "lock" has been **disabled**, we can play Growtopia on multiple window
 ![patch_example](turtorials/sucsess.png)
 ![patch_example](turtorials/succsess2.png)
 
+## 2.Game And Ghidra Installation
+Before starting this turtorial, we need to install both of the game and ghidra
 
+### ghidra installation
+head over to [ghidra][ghidra_installation_link] and look at the [installation guide](https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/stable/GhidraDocs/InstallationGuide.html)
+
+### growtopia installation
+
+which can be installed [here][turtorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
 
 
 # Editing The article
-this article is written in markdown, and to view the markdown some packages need to be installed
-## setup
+this article is written in markdown, and to view the markdown some packages need to be installed 
+
+## Setup
 [python][python_link] and [pip][pip_link] needs to be installed on your system
 ### ubuntu
 ```
@@ -110,8 +123,12 @@ run `render.sh` to render the article (only needed once)
 
 [//]: # (Common Links used by this article)
 [ghidra_link]: https://github.com/NationalSecurityAgency/ghidra
+[ghidra_installation_link]: https://ghidra-sre.org/
 [CreateMutexA_link]: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa
 [OpenMutexW_link]: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-openmutexw
 [pip_link]: https://pypi.org/project/pip/
 [python_link]: https://www.python.org/
+[turtorial_installer_link]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
 
+[growtopia_link]: https://www.growtopiagame.com/
+[turtorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
