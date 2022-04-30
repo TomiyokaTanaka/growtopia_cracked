@@ -1,6 +1,7 @@
 # Turtorial
 In this tutorial I will show you how to reverse engineer a game(growtopia)
-If you got 
+
+If you have a problem/issue comment it out [here][article_comments_section_link]
 
 # Why?
 In the game you can't open a multiple instances of the game, so that you can't play with multiple
@@ -23,6 +24,7 @@ To understand/follow along this article things listed here is required
 - [game and ghidra installation](#2game-and-ghidra-installation)
 - [importing the game to ghidra](#3-importing-the-game-to-ghidra)
 - [information gathering](#4-information-gathering)
+- [binary analysis](#5-binary-analysis)
 
 
 ```
@@ -168,6 +170,40 @@ Now lets look at the first repositories that is shown which is [proton][proton_l
 
 We can see that growtopia is using the ***Proton SDK***, now we can conclude that it is likely
 that growtopia on windows is written using ***c/c++*** and is using [winapi][win_api_wikipedia_link] to check for multiple instances
+
+## 5. Binary Analysis
+In this step we are going to analyze the program using the ***code viewer*** 
+by double clicking ***Growtopia.exe***
+
+![turtorial_image](tutorials/16.png)
+
+Then we are brought to ***code viewer*** menu, which we will press ***yes*** to let ***ghidra*** analyze
+, dissasemble and decompile the binary for us.
+
+![turtorial_image](tutorials/17.png)
+
+
+
+To get the function's parameters correctly for better ***decompilation result*** 
+ we need to turn on the ***Decompiler Parameter Id*** option 
+![turtorial_image](tutorials/19.png)
+
+Click ***Apply*** then ***Analyze***, we can see the analysis's progress in the bottom right
+, it might take a long time depending on the pc (It took about one hour on my pc for ghidra to analyze
+the binary)
+
+![turtorial_image](tutorials/21.png)
+
+
+We can see a few ***warning***, but that is okay and we
+can just close this windows. 
+
+![turtorial_image](tutorials/22.png)
+
+after the analysis is completed, we can get to the ***fun and actual reverse engineering stuff***
+
+![turtorial_image](tutorials/hacker_image.jpg)
+
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
 
