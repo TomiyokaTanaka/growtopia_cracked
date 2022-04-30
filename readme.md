@@ -1,7 +1,6 @@
 # Turtorial
 In this tutorial I will show you how to reverse engineer a game(growtopia)
 
-If you have a problem/issue comment it out [here][article_comments_section_link]
 
 # Why?
 In the game you can't open a multiple instances of the game, so that you can't play with multiple
@@ -16,6 +15,11 @@ To understand/follow along this article things listed here is required
 - [ghidra](https://github.com/NationalSecurityAgency/ghidra) software - Windows OS
 
 
+# Issues and comments
+
+- for feedback / comments about the article, go [here][article_comments_section_link]
+
+- for people having problem / issue in the turtorial, go [here][article_issue_link]
 
 # Turtorials
 
@@ -228,7 +232,6 @@ run `render.sh` to render the article (only needed once)
 
 
 
-
 [//]: # (Common Links used by this article)
 [ghidra_link]: https://github.com/NationalSecurityAgency/ghidra
 [ghidra_installation_link]: https://ghidra-sre.org/
@@ -241,7 +244,9 @@ run `render.sh` to render the article (only needed once)
 [growtopia_link]: https://www.growtopiagame.com/
 [tutorial_resources]: https://github.com/ShiromiTempest/growtopia_cracked/releases/tag/v.1.0.0
 [visual_studio_link]: https://visualstudio.microsoft.com/
+
 [article_comments_section_link]: https://github.com/ShiromiTempest/growtopia_cracked/issues/1
+[article_issue_link]: https://github.com/ShiromiTempest/growtopia_cracked/issues
 [growtopia_wikipedia_link]: https://en.wikipedia.org/wiki/Growtopia
 [rtsoft_github_link]: https://github.com/SethRobinson
 [proton_link]: https://github.com/SethRobinson/proton
