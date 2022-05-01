@@ -22,6 +22,7 @@ To understand/follow along this article things listed here is required
 - for people having problem / issue in the turtorial, go [here][article_issue_link]
 
 # Turtorials
+Before starting the turtorials, make sure to ***zoom in*** to have a better look at the image
 
 ## Turtorials Table Of contents
 - [1.Overview](#1overview)
