@@ -33,6 +33,7 @@ Before starting the turtorials, make sure to ***zoom in*** to have a better look
 - [6.finding the code that prevent multiple instances](#6-finding-the-code-that-prevent-multiple-instances)
 - [7.understanding the validator](#7-understanding-the-validator)
 - [8.bypassing the validator](#8-bypassing-the-validator)
+- [9.Exporting the program and testing it out](#9exporting-the-program-and-testing-it-out)
 
 ```
 Notes : 
@@ -601,16 +602,44 @@ selecting it as shown in the picture below
 - After the ***patch*** we can see how the ***assembly*** and the ***decompiled code***
   is changed, which results in `pvVar4==(HANDLE)0x0` being ***removed*** 
 
+![](tutorials/43.png)
+
 Now the program will always create a new ***instance*** regardless if a mutex is ***created***
 previously.
 
 
+## 9.Exporting the program and testing it out
 
- 		
-		
+Now that we have ***patched*** the binary, we will need to export the program to 
+use ***modified*** version.
 
+- click ***file->Export Program...***
+![](tutorials/44.png)
 
+- change the ***Format*** to ***Binary*** then select where you want it to be ***saved***
+
+![](tutorials/45.png)
+
+- Now lets go to the folder which we have ***saved*** the modified binary, we notice that the 
+  name has a `.bin` at the end, so we will need to ***remove*** it in order for it to become
+  ***a normal executable***
+
+![](tutorials/46.png)
+
+- Then we will ***replace*** the original ***Growtopia.exe*** with the ***modified version***
+
+![](tutorials/47.png)
+
+- When we try to open ***Growtopia*** we can see that we have sucessfully ***reverse
+  engineered*** the game because we can open more than 1 instance now :) .
+ 
+![](tutorials/sucsess.png)
+
+- We can even play ***multiple accounts*** in the same computer, which I assume that the 
+  dev teams have missed this ***vulnerability*** 
+![](tutorials/succsess2.png)
   
+
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
