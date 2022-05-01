@@ -640,6 +640,11 @@ use ***modified*** version.
 ![](tutorials/succsess2.png)
   
 
+# Resources
+
+You can download the ghidra project which you can import in ghidra [here][tutorial_resources] 
+to download `SavedData.zip` then unzip it to get `ghidra_project.gar`.
+
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
