@@ -102,6 +102,8 @@ To Install the exact versio  that I am using in this turtorial, go [here](https:
 
 which can be installed [here][tutorial_resources] to install `SavedData.zip` then extract the zip to get the ***growtopia installer*** to install the game.
 
+You can also install the ***official installer*** [here][growtopia_link] but the ***binary might differ***  from the turtorial
+
 ## 3. Importing the game to ghidra
 
 1. open ***ghidra*** then go to ***file->New Project ...*** 
