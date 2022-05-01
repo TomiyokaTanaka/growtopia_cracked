@@ -32,6 +32,7 @@ Before starting the turtorials, make sure to ***zoom in*** to have a better look
 - [5.binary analysis](#5-binary-analysis)
 - [6.finding the code that prevent multiple instances](#6-finding-the-code-that-prevent-multiple-instances)
 - [7.understanding the validator](#7-understanding-the-validator)
+- [8.bypassing the validator](#8-bypassing-the-validator)
 
 ```
 Notes : 
@@ -538,10 +539,78 @@ then it will display the error message
 instead of initializing the game
 ```
 
-We can also see the ***corresponding assembly and the decompiled code*** of the validator by 
+
+## 8. Bypassing the validator
+
+In this step we are going to bypass the ***validator*** via 
+[binary patching][binary_patching_link] by disabling/ignoring
+```
+if((pvVar4 == (HANDLE)0x))
+```
+In doing so the program will create a new ***mutex*** 
+regardless of the conditional statement.
+
+- We can view the ***corresponding assembly and the decompiled code*** of the validator by 
 selecting it as shown in the picture below
 ![](tutorials/33.png)
 
+- In the assembly instruction `JNZ LAB_1400f96f7` it will jump to the instruction address of 
+  the error display when `pvVar4 == (HANDLE)0x0` is false
+  we can go to the instruction pointed by the ***label*** by 
+  double clicking ***LAB_1400f96f7***
+
+![](tutorials/34.png)
+
+
+
+![](tutorials/35.png)
+
+- We can rename ***LAB_1400f96f7*** to have a more descriptive name like 
+  `LAB_WARNING_MULTIPLE_INSTANCE` by right clicking the ***label*** at the 
+  ***listing window*** 
+![](tutorials/36.png)
+
+- then click ***Edit Label...***, enter the name then click ***ok***
+
+![](tutorials/37.png)
+
+- Now we can see that the ***label*** has been changed 
+
+![](tutorials/38.png)
+
+- we will disable `pvVar4==(HANDLE)0x0` by making an `unconditional jump` 
+  so that `pvVar4==(HANDLE)0x0` will be ignored and jump to 
+  `pvVar4 = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,"Growtopia")` straight away
+	- first right click at `JNZ LAB_WARNING_MULTIPLE_INSTANCE` and click 
+ 	  ***Patch Instruction***
+		![](tutorials/39.png)
+	- wait for ghidra to make the ***assembler*** for us (might take a while)
+		![](tutorials/40.png)
+	- After the process is finished we can patch the assembly instruction as shown
+	  below,
+		![](tutorials/41.png)
+	- We will patch the instruction from `JNZ` to `JMP` for unconditional jump, then
+	  it will jump to the next instruction which is at address ***1400f9410***
+		![](tutorials/42.png)
+	- In the image above, ghidra will show us the recommended ***binary instructions*** 
+ 	  that ***ghidra*** will replace it with, we will choose the ***first option*** then
+	  click ***ok***
+	  (usually replacing an instruction with another instruction that has different 
+	  length will make it ***unstable*** and ***might break*** the program)
+	  
+- After the ***patch*** we can see how the ***assembly*** and the ***decompiled code***
+  is changed, which results in `pvVar4==(HANDLE)0x0` being ***removed*** 
+
+Now the program will always create a new ***instance*** regardless if a mutex is ***created***
+previously.
+
+
+
+ 		
+		
+
+
+  
 
 # Editing The article
 this article is written in markdown, and to view the markdown some packages need to be installed 
@@ -588,3 +657,4 @@ run `render.sh` to render the article (only needed once)
 [win_api_wikipedia_link]: https://en.wikipedia.org/wiki/Windows_API
 [MessageBoxA_link]: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa
 [prevent_multiple_instance_link]: https://stackoverflow.com/questions/8799646/preventing-multiple-instances-of-my-application
+[binary_patching_link]: https://en.wikipedia.org/wiki/Patch_(computing)
