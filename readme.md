@@ -24,13 +24,13 @@ To understand/follow along this article things listed here is required
 # Turtorials
 
 ## Turtorials Table Of contents
-- [Overview](#1overview)
-- [game and ghidra installation](#2game-and-ghidra-installation)
-- [importing the game to ghidra](#3-importing-the-game-to-ghidra)
-- [information gathering](#4-information-gathering)
-- [binary analysis](#5-binary-analysis)
-- [finding the code that prevent multiple instances](#6-finding-the-code-that-prevent-multiple-instances)
-
+- [1.Overview](#1overview)
+- [2.game and ghidra installation](#2game-and-ghidra-installation)
+- [3.importing the game to ghidra](#3-importing-the-game-to-ghidra)
+- [4.information gathering](#4-information-gathering)
+- [5.binary analysis](#5-binary-analysis)
+- [6.finding the code that prevent multiple instances](#6-finding-the-code-that-prevent-multiple-instances)
+- [7.understanding the validator](#7-understanding-the-validator)
 
 ```
 Notes : 
@@ -44,7 +44,6 @@ CreateMutexW == CreateMutexA
 
 In this tutorial we will try to break the validator as shown in [Why? Section](#why) using [reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering) techniques
 with the [ghidra framework][ghidra_link]
-
 
 A common way and easy way to check if a windows program is running with multiple instances is by using 
 the win32 api [CreateMutexA][CreateMutexA_link] and [OpenMutexW][OpenMutexW_link], 
@@ -281,6 +280,8 @@ the strings that the program used, by going to ***Windows->Defined Strings***
 
 This is what ghidra gives me as the ***decompiled code***, we now know that the code that checks 
 for multiple instances is ***somewhere around here***. 
+
+### Decompiled Code
 ```
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
@@ -453,6 +454,92 @@ LAB_1400f9709:
 }
 
 ```
+## 7. Understanding the validator
+In this section, we will try to understand how it checks for multiple instances from the 
+[decompiled code](#decompiled-code) that we got from the previous section. 
+
+after looking at the decompiled code we notice that at the bottom that there 
+is a function which will display the warning that multiple instances are running
+which is
+```
+  MessageBoxA((HWND)0x0,"An instance of Growtopia is already running!  Go play that one.",
+              "Growtopia",0);
+```
+![](tutorials/32.png)
+
+Now that we have found the corresponding code that displays the warning, the next step 
+is to try to trace back on how/where  the warning is called. 
+
+when we look back at the [decompiled code](#decompiled-code) we know that if the ***if condition
+is true*** then it will initialize the game properly, ***else*** it will display the warning
+box which will prevent us from opening multiple windows of ***growtopia***.
+ 
+```
+  pvVar4 = OpenMutexA(0x1f0001,0,"Growtopia");
+  if ((pvVar4 == (HANDLE)0x0) &&
+     (pvVar4 = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,"Growtopia"), pvVar4 != (HANDLE)0x0)) 
+```
+from the code above, we know that it is using the win api 
+[CreateMutexA][CreateMutexA_link] and [OpenMutexA][OpenMutexW_link] to check for 
+multiple instances, they are the ***most common way*** for 
+a windows program to check for multiple instances 
+described [here][prevent_multiple_instance_link]
+
+### [CreateMutexA][CreateMutexA_link]
+> Creates or opens a named or unnamed mutex object.
+
+Function signature
+
+```
+HANDLE CreateMutexA(
+  [in, optional] LPSECURITY_ATTRIBUTES lpMutexAttributes,
+  [in]           BOOL                  bInitialOwner,
+  [in, optional] LPCSTR                lpName
+);
+```
+
+### [OpenMutexA][OpenMutexW_link]
+
+> Opens an existing named mutex object.
+
+```
+HANDLE OpenMutexW(
+  [in] DWORD   dwDesiredAccess,
+  [in] BOOL    bInheritHandle,
+  [in] LPCWSTR lpName
+);
+```
+
+#### Return value
+> If the function succeeds, the return value is a handle to the mutex object.
+> 
+> If the function fails, the return value is NULL. To get extended error information, call GetLastError.
+> 
+> If a named mutex does not exist, the function fails and GetLastError returns ERROR_FILE_NOT_FOUND
+
+### What we understood so far
+
+according to the documentation, if `OpenMutexA` fails because no previous mutex was ***created***
+then it will ***return NULL***.
+so we can add a summary in this section of the [decompiled code](#decompiled-code)
+```
+  pvVar4 = OpenMutexA(0x1f0001,0,"Growtopia");
+  if ((pvVar4 == (HANDLE)0x0) &&
+     (pvVar4 = CreateMutexA((LPSECURITY_ATTRIBUTES)0x0,0,"Growtopia"), pvVar4 != (HANDLE)0x0)) 
+```
+
+and ***the summary of the validator*** is as follow 
+```
+first try to open a mutex then check if it returns null
+only create a new mutex if the return value of OpenMutexA is NULL
+if pvVar4 is not null, then a mutex is previously created 
+then it will display the error message 
+instead of initializing the game
+```
+
+We can also see the ***corresponding assembly and the decompiled code*** of the validator by 
+selecting it as shown in the picture below
+![](tutorials/33.png)
 
 
 # Editing The article
@@ -499,3 +586,4 @@ run `render.sh` to render the article (only needed once)
 [proton_link]: https://github.com/SethRobinson/proton
 [win_api_wikipedia_link]: https://en.wikipedia.org/wiki/Windows_API
 [MessageBoxA_link]: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa
+[prevent_multiple_instance_link]: https://stackoverflow.com/questions/8799646/preventing-multiple-instances-of-my-application
